@@ -206,6 +206,7 @@ export default function NexusQuiz() {
   const [lastBonus, setLastBonus] = useState(0)
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null)
   const [mounted, setMounted] = useState(false)
+  const [dollarRate, setDollarRate] = useState(5.85) // Taxa de câmbio em tempo real
   const [metrics, setMetrics] = useState<Metrics>({
     usersStarted: 2847,
     usersCompleted: 2018,
@@ -243,6 +244,13 @@ export default function NexusQuiz() {
         bonusPaid: prev.bonusPaid + (Math.random() > 0.8 ? Math.floor(Math.random() * 40) : 0),
         newInvestors: prev.newInvestors + (Math.random() > 0.9 ? 1 : 0)
       }))
+      
+      // Atualizar cotação do dólar em tempo real (variação de ±0.05)
+      setDollarRate(prev => {
+        const variation = (Math.random() - 0.5) * 0.1 // Variação de -0.05 a +0.05
+        const newRate = prev + variation
+        return Math.max(5.70, Math.min(6.00, newRate)) // Manter entre 5.70 e 6.00
+      })
     }, 3000)
 
     return () => clearInterval(interval)
@@ -343,8 +351,16 @@ export default function NexusQuiz() {
           </div>
           
           <div className="flex items-center gap-3 mb-3">
-            <div className="text-3xl font-black text-[#00ff66] tracking-wider drop-shadow-lg">
-              US${totalBonus.toFixed(0)}
+            <div className="flex flex-col">
+              <div className="text-3xl font-black text-[#00ff66] tracking-wider drop-shadow-lg">
+                US${totalBonus.toFixed(0)}
+              </div>
+              <div className="text-lg font-bold text-[#ffd700] tracking-wide" suppressHydrationWarning>
+                R${mounted ? (totalBonus * dollarRate).toFixed(0) : '0'}
+              </div>
+              <div className="text-xs text-gray-400" suppressHydrationWarning>
+                USD/BRL: {mounted ? dollarRate.toFixed(2) : '5.85'}
+              </div>
             </div>
             <div className="flex flex-col">
               <div className="text-xs text-gray-400">PROGRESSO</div>
@@ -798,7 +814,15 @@ export default function NexusQuiz() {
                       <DollarSign className="w-5 h-5 text-[#00ff66]" />
                       Saldo Conquistado:
                     </span>
-                    <span className="text-[#00ff66] font-black text-3xl animate-pulse">US$40</span>
+                    <div className="text-right">
+                      <div className="text-[#00ff66] font-black text-3xl animate-pulse">US$40</div>
+                      <div className="text-[#ffd700] font-bold text-lg" suppressHydrationWarning>
+                        R${mounted ? (40 * dollarRate).toFixed(0) : '234'}
+                      </div>
+                      <div className="text-xs text-gray-400" suppressHydrationWarning>
+                        USD/BRL: {mounted ? dollarRate.toFixed(2) : '5.85'}
+                      </div>
+                    </div>
                   </div>
                   
                   <div className="flex justify-between items-center p-3 bg-gray-800/50 rounded-lg">
@@ -906,7 +930,7 @@ export default function NexusQuiz() {
                   <div className="bg-black/20 p-4 rounded-xl">
                     <div className="text-lg font-bold mb-2">🎁 VOCÊ RECEBE HOJE:</div>
                     <div className="space-y-1 text-sm font-semibold">
-                      <div>✅ US$40 na conta real Deriv</div>
+                      <div>✅ US$40 (R${mounted ? (40 * dollarRate).toFixed(0) : '234'}) na conta real Deriv</div>
                       <div>✅ 20 Inteligências Artificiais</div>
                       <div>✅ Suporte VIP exclusivo</div>
                       <div>✅ Grupo de traders elite</div>
@@ -932,7 +956,7 @@ export default function NexusQuiz() {
                 <span className="text-xl">ATIVAR ACESSO AGORA</span>
                 <DollarSign className="w-6 h-6 animate-pulse" />
               </div>
-              <div className="text-sm mt-1 opacity-90">💸 Receber meus US$40 + Acesso VIP</div>
+              <div className="text-sm mt-1 opacity-90">💸 Receber meus US$40 (R${mounted ? (40 * dollarRate).toFixed(0) : '234'}) + Acesso VIP</div>
             </button>
             
             {/* Garantias e urgência */}
