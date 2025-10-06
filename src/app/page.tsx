@@ -652,14 +652,13 @@ export default function NexusQuiz() {
             </div>
             
             {/* Título mais impactante */}
-            <div className="mb-4">
-              <h1 className="text-3xl font-black mb-2 bg-gradient-to-r from-[#ff6600] via-[#ffd700] to-[#00e0ff] bg-clip-text text-transparent animate-pulse">
+            <div className="mb-2">
+              <h1 className="text-2xl font-black mb-1 bg-gradient-to-r from-[#ff6600] via-[#ffd700] to-[#00e0ff] bg-clip-text text-transparent animate-pulse">
                 DESPERTE SUA
               </h1>
-              <h1 className="text-4xl font-black mb-2 bg-gradient-to-r from-[#00ff66] via-[#00e0ff] to-[#ffd700] bg-clip-text text-transparent">
+              <h1 className="text-2xl font-black mb-1 bg-gradient-to-r from-[#00ff66] via-[#00e0ff] to-[#ffd700] bg-clip-text text-transparent">
                 LIBERDADE FINANCEIRA
               </h1>
-
             </div>
             
             {/* Dashboard em destaque na frente */}
