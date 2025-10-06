@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { ChevronRight, TrendingUp, DollarSign, Users, Target, Globe, Zap, Award, CheckCircle, ArrowRight, BarChart3, LineChart, Activity, Sparkles, Star, Trophy, Rocket, Crown, Play, Pause, Volume2 } from 'lucide-react'
+import { ChevronRight, TrendingUp, DollarSign, Users, Target, Globe, Zap, Award, CheckCircle, ArrowRight, BarChart3, LineChart, Activity, Sparkles, Star, Trophy, Rocket, Crown, Play, Pause, Volume2, CreditCard, X } from 'lucide-react'
 
 interface Question {
   id: number
@@ -199,7 +199,7 @@ interface SocialProof {
 }
 
 export default function NexusQuiz() {
-  const [currentScreen, setCurrentScreen] = useState<'intro' | 'quiz' | 'final' | 'dashboard'>('intro')
+  const [currentScreen, setCurrentScreen] = useState<'intro' | 'quiz' | 'final' | 'dashboard' | 'payment' | 'cardWarning'>('intro')
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [totalBonus, setTotalBonus] = useState(0)
   const [showNotification, setShowNotification] = useState(false)
@@ -207,6 +207,7 @@ export default function NexusQuiz() {
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null)
   const [mounted, setMounted] = useState(false)
   const [dollarRate, setDollarRate] = useState(5.85) // Taxa de câmbio em tempo real
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<'pix' | 'card' | null>(null)
   const [metrics, setMetrics] = useState<Metrics>({
     usersStarted: 2847,
     usersCompleted: 2018,
@@ -311,6 +312,24 @@ export default function NexusQuiz() {
         }
       }, 2000)
     }, 500)
+  }
+
+  const handlePaymentMethod = (method: 'pix' | 'card') => {
+    setSelectedPaymentMethod(method)
+    
+    if (method === 'pix') {
+      // PIX: redirecionamento direto
+      window.open('https://gateway-pagamento-nexus-dqce.vercel.app', '_blank')
+    } else if (method === 'card') {
+      // Cartão: mostrar tela de aviso primeiro
+      setCurrentScreen('cardWarning')
+    }
+  }
+
+  const handleCardContinue = () => {
+    // Redirecionar para o checkout após o aviso
+    window.open('https://gateway-pagamento-nexus-dqce.vercel.app', '_blank')
+    setCurrentScreen('final') // Voltar para a tela final
   }
 
   const NexusLogo = () => (
@@ -485,6 +504,91 @@ export default function NexusQuiz() {
           />
           <div className="text-[#ff6600] font-bold text-xl tracking-wider">NEXUS</div>
           <div className="text-gray-400 text-sm font-medium">CARREGANDO...</div>
+        </div>
+      </div>
+    )
+  }
+
+  // Tela de aviso para cartão de crédito
+  if (currentScreen === 'cardWarning') {
+    return (
+      <div className="min-h-screen bg-black text-white p-4 relative overflow-hidden">
+        {/* Efeitos de fundo */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#ff6600]/10 via-black to-[#00e0ff]/10"></div>
+        <div className="absolute top-20 left-10 w-40 h-40 bg-[#ff6600]/5 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-32 h-32 bg-[#00e0ff]/5 rounded-full blur-3xl animate-ping"></div>
+        
+        <div className="max-w-md mx-auto relative z-10">
+          <div className="text-center">
+            <NexusLogo />
+            
+            {/* Aviso informativo */}
+            <div className="bg-gradient-to-br from-gray-900 via-black to-gray-800 p-8 rounded-2xl mb-6 border-2 border-[#ff6600]/50 shadow-2xl shadow-[#ff6600]/20 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-r from-[#ff6600]/5 via-transparent to-[#ffd700]/5"></div>
+              <div className="absolute top-2 right-2 w-3 h-3 bg-[#ff6600] rounded-full animate-pulse"></div>
+              
+              <div className="relative z-10">
+                <div className="flex items-center justify-center gap-3 mb-6">
+                  <CreditCard className="w-12 h-12 text-[#ff6600] animate-pulse" />
+                  <div>
+                    <h2 className="text-2xl font-black text-[#ff6600]">PAGAMENTO SEGURO</h2>
+                    <p className="text-gray-400 text-sm">Cartão de Crédito</p>
+                  </div>
+                </div>
+                
+                <div className="bg-black/30 p-6 rounded-xl border border-[#ffd700]/30 mb-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-8 h-8 bg-[#ffd700] rounded-full flex items-center justify-center">
+                      <span className="text-black text-lg">ℹ️</span>
+                    </div>
+                    <span className="text-[#ffd700] font-bold text-lg">INFORMAÇÃO IMPORTANTE</span>
+                  </div>
+                  
+                  <p className="text-white text-center text-lg leading-relaxed">
+                    Você será redirecionado para a plataforma <span className="text-[#00e0ff] font-bold">Infinity Pay</span> para continuar o pagamento com segurança.
+                  </p>
+                </div>
+                
+                <div className="space-y-3 text-sm text-gray-300 mb-6">
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-[#00ff66] rounded-full"></div>
+                    <span>Pagamento 100% seguro e criptografado</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-[#00ff66] rounded-full"></div>
+                    <span>Processamento imediato</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-[#00ff66] rounded-full"></div>
+                    <span>Seus dados protegidos</span>
+                  </div>
+                </div>
+                
+                {/* Botões de ação */}
+                <div className="space-y-3">
+                  <button
+                    onClick={handleCardContinue}
+                    className="w-full bg-gradient-to-r from-[#00ff66] via-[#00e0ff] to-[#00ff66] text-black font-black py-4 px-6 rounded-xl hover:scale-105 transition-all duration-300 shadow-xl shadow-[#00ff66]/30"
+                  >
+                    <div className="flex items-center justify-center gap-3">
+                      <ArrowRight className="w-5 h-5" />
+                      <span>CONTINUAR PARA INFINITY PAY</span>
+                    </div>
+                  </button>
+                  
+                  <button
+                    onClick={() => setCurrentScreen('final')}
+                    className="w-full bg-gray-800/50 text-gray-300 font-bold py-3 px-6 rounded-xl hover:bg-gray-700/50 transition-all duration-300 border border-gray-700/50"
+                  >
+                    <div className="flex items-center justify-center gap-2">
+                      <X className="w-4 h-4" />
+                      <span>Voltar</span>
+                    </div>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     )
@@ -944,19 +1048,45 @@ export default function NexusQuiz() {
               </div>
             </div>
             
-            {/* Botão de ação mais chamativo */}
-            <button
-              onClick={() => window.open('https://nexusinvestimentosusd.com.br', '_blank')}
-              className="w-full bg-gradient-to-r from-[#00ff66] via-[#00e0ff] to-[#00ff66] text-black font-black py-6 px-8 rounded-2xl hover:scale-105 transition-all duration-300 shadow-2xl shadow-[#00ff66]/40 mb-4 relative overflow-hidden group"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent group-hover:from-white/30 transition-all duration-300"></div>
-              <div className="relative z-10 flex items-center justify-center gap-3">
-                <Rocket className="w-6 h-6 animate-bounce" />
-                <span className="text-xl">ATIVAR ACESSO AGORA</span>
-                <DollarSign className="w-6 h-6 animate-pulse" />
+            {/* Seção de métodos de pagamento */}
+            <div className="bg-gradient-to-br from-gray-900 via-black to-gray-800 p-6 rounded-2xl mb-6 border border-[#00e0ff]/30 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-r from-[#00e0ff]/5 to-transparent"></div>
+              <div className="relative z-10">
+                <h3 className="text-xl font-bold text-[#00e0ff] mb-4 text-center">
+                  ESCOLHA SUA FORMA DE PAGAMENTO
+                </h3>
+                
+                <div className="space-y-3">
+                  {/* PIX */}
+                  <button
+                    onClick={() => handlePaymentMethod('pix')}
+                    className="w-full bg-gradient-to-r from-[#00ff66] to-[#00e0ff] text-black font-black py-4 px-6 rounded-xl hover:scale-105 transition-all duration-300 shadow-xl shadow-[#00ff66]/30 relative overflow-hidden group"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent group-hover:from-white/30 transition-all duration-300"></div>
+                    <div className="relative z-10 flex items-center justify-center gap-3">
+                      <Zap className="w-6 h-6" />
+                      <span className="text-lg">PIX INSTANTÂNEO</span>
+                      <DollarSign className="w-6 h-6" />
+                    </div>
+                    <div className="text-sm mt-1 opacity-90">⚡ Bônus liberado em segundos</div>
+                  </button>
+                  
+                  {/* Cartão de Crédito */}
+                  <button
+                    onClick={() => window.open('https://invoice.infinitepay.io/plans/ismael-barbosa-pereira/2f4rog5lP', '_blank')}
+                    className="w-full bg-gradient-to-r from-[#ff6600] to-[#ff8800] text-white font-black py-4 px-6 rounded-xl hover:scale-105 transition-all duration-300 shadow-xl shadow-[#ff6600]/30 relative overflow-hidden group"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent group-hover:from-white/20 transition-all duration-300"></div>
+                    <div className="relative z-10 flex items-center justify-center gap-3">
+                      <CreditCard className="w-6 h-6" />
+                      <span className="text-lg">CARTÃO DE CRÉDITO</span>
+                      <Award className="w-6 h-6" />
+                    </div>
+                    <div className="text-sm mt-1 opacity-90">💳 Liberação em até 7 dias</div>
+                  </button>
+                </div>
               </div>
-              <div className="text-sm mt-1 opacity-90">💸 Receber meus US$40 (R${mounted ? (40 * dollarRate).toFixed(0) : '234'}) + Acesso VIP</div>
-            </button>
+            </div>
             
             {/* Garantias e urgência */}
             <div className="bg-gray-900/50 p-4 rounded-xl border border-[#ffd700]/30">
