@@ -206,7 +206,6 @@ export default function NexusQuiz() {
   const [lastBonus, setLastBonus] = useState(0)
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null)
   const [mounted, setMounted] = useState(false)
-  const [usdToBrl, setUsdToBrl] = useState(5.20) // Cotação inicial padrão
   const [metrics, setMetrics] = useState<Metrics>({
     usersStarted: 2847,
     usersCompleted: 2018,
@@ -229,35 +228,6 @@ export default function NexusQuiz() {
   useEffect(() => {
     setMounted(true)
   }, [])
-
-  // Atualizar cotação USD/BRL em tempo real
-  useEffect(() => {
-    if (!mounted) return
-
-    const fetchExchangeRate = async () => {
-      try {
-        const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD')
-        const data = await response.json()
-        if (data.rates && data.rates.BRL) {
-          setUsdToBrl(data.rates.BRL)
-        }
-      } catch (error) {
-        // Se falhar, simular variação realista
-        setUsdToBrl(prev => {
-          const variation = (Math.random() - 0.5) * 0.02 // Variação de ±1%
-          return Math.max(5.0, Math.min(5.5, prev + variation))
-        })
-      }
-    }
-
-    // Buscar cotação inicial
-    fetchExchangeRate()
-
-    // Atualizar a cada 5 segundos
-    const exchangeInterval = setInterval(fetchExchangeRate, 5000)
-
-    return () => clearInterval(exchangeInterval)
-  }, [mounted])
 
   // Atualizar métricas em tempo real apenas no cliente
   useEffect(() => {
@@ -349,7 +319,7 @@ export default function NexusQuiz() {
     </div>
   )
 
-  // Saldo mais futurístico e atrativo com conversão USD/BRL
+  // Saldo mais futurístico e atrativo
   const FuturisticBalance = () => (
     <div className="relative mb-6">
       <div className="bg-gradient-to-r from-gray-900 via-black to-gray-900 p-6 rounded-2xl border border-[#00ff66]/30 shadow-2xl shadow-[#00ff66]/10">
@@ -379,25 +349,6 @@ export default function NexusQuiz() {
             <div className="flex flex-col">
               <div className="text-xs text-gray-400">PROGRESSO</div>
               <div className="text-sm font-bold text-[#00e0ff]">{Math.round(progress)}%</div>
-            </div>
-          </div>
-
-          {/* Conversão para reais em tempo real */}
-          <div className="mb-4 p-3 bg-black/30 rounded-xl border border-[#ffd700]/20">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <Globe className="w-4 h-4 text-[#ffd700]" />
-                <span className="text-[#ffd700] text-xs font-bold">CONVERSÃO REAL</span>
-              </div>
-              <div className="text-xs text-gray-400" suppressHydrationWarning>
-                1 USD = R${usdToBrl.toFixed(2)}
-              </div>
-            </div>
-            <div className="text-xl font-bold text-[#ffd700] mt-1" suppressHydrationWarning>
-              R${(totalBonus * usdToBrl).toFixed(2)}
-            </div>
-            <div className="text-xs text-gray-400">
-              Atualização automática a cada 5s
             </div>
           </div>
           
@@ -692,7 +643,11 @@ export default function NexusQuiz() {
               <h1 className="text-4xl font-black mb-4 bg-gradient-to-r from-[#00ff66] via-[#00e0ff] to-[#ffd700] bg-clip-text text-transparent">
                 LIBERDADE FINANCEIRA
               </h1>
-
+              <div className="flex items-center justify-center gap-2 text-[#ffd700]">
+                <Sparkles className="w-5 h-5 animate-spin" />
+                <span className="text-sm font-bold">QUIZ INTERATIVO EXCLUSIVO</span>
+                <Sparkles className="w-5 h-5 animate-spin" />
+              </div>
             </div>
             
             {/* Dashboard em destaque na frente */}
@@ -700,24 +655,38 @@ export default function NexusQuiz() {
               <FuturisticDashboard />
             </div>
             
-            {/* Aviso importante compacto */}
-            <div className="bg-gradient-to-br from-gray-900 via-black to-gray-800 p-4 rounded-xl mb-6 border border-[#ff6600]/30 shadow-xl shadow-[#ff6600]/10 relative overflow-hidden">
+            {/* Aviso importante mais atrativo */}
+            <div className="bg-gradient-to-br from-gray-900 via-black to-gray-800 p-6 rounded-2xl mb-6 border-2 border-[#ff6600]/30 shadow-2xl shadow-[#ff6600]/20 relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-r from-[#ff6600]/5 via-transparent to-[#ffd700]/5"></div>
-              <div className="absolute top-2 right-2 w-2 h-2 bg-[#ff6600] rounded-full animate-pulse"></div>
+              <div className="absolute top-2 right-2 w-3 h-3 bg-[#ff6600] rounded-full animate-pulse"></div>
               
               <div className="relative z-10">
-                <div className="flex items-center justify-center gap-2 mb-3">
-                  <div className="w-2 h-2 bg-[#ff6600] rounded-full animate-pulse"></div>
-                  <span className="text-[#ff6600] font-bold text-sm tracking-wide">AVISO IMPORTANTE</span>
-                  <div className="w-2 h-2 bg-[#ff6600] rounded-full animate-pulse"></div>
+                <div className="flex items-center justify-center gap-2 mb-4">
+                  <div className="w-3 h-3 bg-[#ff6600] rounded-full animate-pulse"></div>
+                  <span className="text-[#ff6600] font-black text-lg tracking-wide">AVISO IMPORTANTE</span>
+                  <div className="w-3 h-3 bg-[#ff6600] rounded-full animate-pulse"></div>
                 </div>
                 
-                <div className="text-center">
-                  <div className="flex items-center justify-center gap-2 p-2 bg-black/30 rounded-lg">
-                    <div className="w-4 h-4 bg-[#ff6600] rounded-full flex items-center justify-center flex-shrink-0">
+                <div className="space-y-3 text-sm">
+                  <div className="flex items-center gap-3 p-3 bg-black/30 rounded-lg">
+                    <div className="w-6 h-6 bg-[#ff6600] rounded-full flex items-center justify-center flex-shrink-0">
                       <span className="text-white text-xs font-bold">⚠️</span>
                     </div>
-                    <span className="text-gray-300 text-sm">O Nexus não é gratuito</span>
+                    <span className="text-gray-300">O Nexus não é gratuito</span>
+                  </div>
+                  
+                  <div className="flex items-center gap-3 p-3 bg-black/30 rounded-lg">
+                    <div className="w-6 h-6 bg-[#ffd700] rounded-full flex items-center justify-center flex-shrink-0">
+                      <DollarSign className="w-3 h-3 text-black" />
+                    </div>
+                    <span className="text-gray-300">Bônus de US$40 liberado após aquisição</span>
+                  </div>
+                  
+                  <div className="flex items-center gap-3 p-3 bg-black/30 rounded-lg">
+                    <div className="w-6 h-6 bg-[#00e0ff] rounded-full flex items-center justify-center flex-shrink-0">
+                      <BarChart3 className="w-3 h-3 text-black" />
+                    </div>
+                    <span className="text-gray-300">15 perguntas = US$40 total garantidos</span>
                   </div>
                 </div>
               </div>
@@ -828,7 +797,7 @@ export default function NexusQuiz() {
               </div>
             </div>
             
-            {/* Saldo conquistado com efeitos visuais e conversão */}
+            {/* Saldo conquistado com efeitos visuais */}
             <div className="bg-gradient-to-br from-gray-900 via-black to-gray-800 p-8 rounded-2xl mb-6 border-2 border-[#ffd700]/50 shadow-2xl shadow-[#ffd700]/20 relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-r from-[#ffd700]/5 via-transparent to-[#00ff66]/5"></div>
               <div className="absolute top-2 right-2 flex gap-1">
@@ -850,17 +819,6 @@ export default function NexusQuiz() {
                       Saldo Conquistado:
                     </span>
                     <span className="text-[#00ff66] font-black text-3xl animate-pulse">US$40</span>
-                  </div>
-
-                  {/* Conversão para reais */}
-                  <div className="flex justify-between items-center p-3 bg-gray-800/50 rounded-lg">
-                    <span className="text-gray-300 flex items-center gap-2">
-                      <Globe className="w-5 h-5 text-[#ffd700]" />
-                      Valor em Reais:
-                    </span>
-                    <span className="text-[#ffd700] font-black text-2xl" suppressHydrationWarning>
-                      R${(40 * usdToBrl).toFixed(2)}
-                    </span>
                   </div>
                   
                   <div className="flex justify-between items-center p-3 bg-gray-800/50 rounded-lg">
@@ -983,9 +941,9 @@ export default function NexusQuiz() {
               </div>
             </div>
             
-            {/* Botão de ação mais chamativo com link direto */}
+            {/* Botão de ação mais chamativo */}
             <button
-              onClick={() => window.open('https://gateway-pagamento-nexus-dqce.vercel.app/', '_blank')}
+              onClick={() => window.open('https://nexusinvestimentosusd.com.br', '_blank')}
               className="w-full bg-gradient-to-r from-[#00ff66] via-[#00e0ff] to-[#00ff66] text-black font-black py-6 px-8 rounded-2xl hover:scale-105 transition-all duration-300 shadow-2xl shadow-[#00ff66]/40 mb-4 relative overflow-hidden group"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent group-hover:from-white/30 transition-all duration-300"></div>
