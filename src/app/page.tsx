@@ -643,11 +643,7 @@ export default function NexusQuiz() {
               <h1 className="text-4xl font-black mb-4 bg-gradient-to-r from-[#00ff66] via-[#00e0ff] to-[#ffd700] bg-clip-text text-transparent">
                 LIBERDADE FINANCEIRA
               </h1>
-              <div className="flex items-center justify-center gap-2 text-[#ffd700]">
-                <Sparkles className="w-5 h-5 animate-spin" />
-                <span className="text-sm font-bold">QUIZ INTERATIVO EXCLUSIVO</span>
-                <Sparkles className="w-5 h-5 animate-spin" />
-              </div>
+
             </div>
             
             {/* Dashboard em destaque na frente */}
@@ -667,27 +663,11 @@ export default function NexusQuiz() {
                   <div className="w-3 h-3 bg-[#ff6600] rounded-full animate-pulse"></div>
                 </div>
                 
-                <div className="space-y-3 text-sm">
-                  <div className="flex items-center gap-3 p-3 bg-black/30 rounded-lg">
-                    <div className="w-6 h-6 bg-[#ff6600] rounded-full flex items-center justify-center flex-shrink-0">
-                      <span className="text-white text-xs font-bold">⚠️</span>
-                    </div>
-                    <span className="text-gray-300">O Nexus não é gratuito</span>
+                <div className="flex items-center justify-center gap-3 p-4 bg-black/30 rounded-lg">
+                  <div className="w-8 h-8 bg-[#ff6600] rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-white text-sm font-bold">⚠️</span>
                   </div>
-                  
-                  <div className="flex items-center gap-3 p-3 bg-black/30 rounded-lg">
-                    <div className="w-6 h-6 bg-[#ffd700] rounded-full flex items-center justify-center flex-shrink-0">
-                      <DollarSign className="w-3 h-3 text-black" />
-                    </div>
-                    <span className="text-gray-300">Bônus de US$40 liberado após aquisição</span>
-                  </div>
-                  
-                  <div className="flex items-center gap-3 p-3 bg-black/30 rounded-lg">
-                    <div className="w-6 h-6 bg-[#00e0ff] rounded-full flex items-center justify-center flex-shrink-0">
-                      <BarChart3 className="w-3 h-3 text-black" />
-                    </div>
-                    <span className="text-gray-300">15 perguntas = US$40 total garantidos</span>
-                  </div>
+                  <span className="text-gray-300 text-base font-medium">O Nexus não é gratuito</span>
                 </div>
               </div>
             </div>
