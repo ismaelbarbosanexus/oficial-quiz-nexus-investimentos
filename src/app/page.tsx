@@ -668,35 +668,30 @@ export default function NexusQuiz() {
         
         <div className="max-w-md mx-auto relative z-10">
           <div className="text-center">
-            {/* Logo com efeitos mais impactantes */}
-            <div className="flex items-center justify-center gap-4 mb-8">
+            {/* Logo compacto e otimizado */}
+            <div className="flex items-center justify-center gap-3 mb-6">
               <div className="relative">
                 <img 
                   src="https://k6hrqrxuu8obbfwn.public.blob.vercel-storage.com/temp/38455507-41c1-4826-ad7a-80b4cd12cffc.png" 
-                  alt="Nexus Investimentos Logo" 
-                  className="w-16 h-16 object-contain shadow-2xl shadow-[#ff6600]/40 relative z-10"
+                  alt="Nexus Logo" 
+                  className="w-12 h-12 object-contain shadow-2xl shadow-[#ff6600]/40 relative z-10"
                 />
-                <div className="absolute -top-1 -right-1 w-4 h-4 bg-[#00ff66] rounded-full animate-ping"></div>
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-[#00ff66] rounded-full animate-ping"></div>
               </div>
               <div>
-                <div className="text-[#ff6600] font-black text-3xl tracking-wider drop-shadow-lg">NEXUS</div>
-                <div className="text-gray-300 text-sm font-bold tracking-widest">INVESTIMENTOS</div>
+                <div className="text-[#ff6600] font-black text-xl tracking-wider drop-shadow-lg">NEXUS</div>
+                <div className="text-gray-400 text-xs font-medium tracking-wide">INVESTIMENTOS</div>
               </div>
             </div>
             
-            {/* Título mais impactante */}
-            <div className="mb-8">
-              <h1 className="text-3xl font-black mb-3 bg-gradient-to-r from-[#ff6600] via-[#ffd700] to-[#00e0ff] bg-clip-text text-transparent animate-pulse">
+            {/* Título compacto e impactante */}
+            <div className="mb-6">
+              <h1 className="text-xl font-black mb-2 bg-gradient-to-r from-[#ff6600] via-[#ffd700] to-[#00e0ff] bg-clip-text text-transparent animate-pulse">
                 DESPERTE SUA
               </h1>
-              <h1 className="text-4xl font-black mb-4 bg-gradient-to-r from-[#00ff66] via-[#00e0ff] to-[#ffd700] bg-clip-text text-transparent">
+              <h1 className="text-2xl font-black mb-3 bg-gradient-to-r from-[#00ff66] via-[#00e0ff] to-[#ffd700] bg-clip-text text-transparent">
                 LIBERDADE FINANCEIRA
               </h1>
-              <div className="flex items-center justify-center gap-2 text-[#ffd700]">
-                <Sparkles className="w-5 h-5 animate-spin" />
-                <span className="text-sm font-bold">QUIZ INTERATIVO EXCLUSIVO</span>
-                <Sparkles className="w-5 h-5 animate-spin" />
-              </div>
             </div>
             
             {/* Dashboard em destaque na frente */}
@@ -994,9 +989,7 @@ export default function NexusQuiz() {
                     </div>
                   </div>
                   
-                  <div className="text-2xl font-black animate-pulse">
-                    = MAIS DE R$500 EM VALOR! 🚀
-                  </div>
+
                 </div>
               </div>
             </div>
