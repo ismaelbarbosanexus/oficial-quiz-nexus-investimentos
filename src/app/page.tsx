@@ -668,30 +668,31 @@ export default function NexusQuiz() {
         
         <div className="max-w-md mx-auto relative z-10">
           <div className="text-center">
-            {/* Logo compacto e otimizado */}
-            <div className="flex items-center justify-center gap-3 mb-6">
+            {/* Logo com efeitos mais impactantes */}
+            <div className="flex items-center justify-center gap-4 mb-8">
               <div className="relative">
                 <img 
                   src="https://k6hrqrxuu8obbfwn.public.blob.vercel-storage.com/temp/38455507-41c1-4826-ad7a-80b4cd12cffc.png" 
-                  alt="Nexus Logo" 
-                  className="w-12 h-12 object-contain shadow-2xl shadow-[#ff6600]/40 relative z-10"
+                  alt="Nexus Investimentos Logo" 
+                  className="w-16 h-16 object-contain shadow-2xl shadow-[#ff6600]/40 relative z-10"
                 />
-                <div className="absolute -top-1 -right-1 w-3 h-3 bg-[#00ff66] rounded-full animate-ping"></div>
+                <div className="absolute -top-1 -right-1 w-4 h-4 bg-[#00ff66] rounded-full animate-ping"></div>
               </div>
               <div>
-                <div className="text-[#ff6600] font-black text-xl tracking-wider drop-shadow-lg">NEXUS</div>
-                <div className="text-gray-400 text-xs font-medium tracking-wide">INVESTIMENTOS</div>
+                <div className="text-[#ff6600] font-black text-3xl tracking-wider drop-shadow-lg">NEXUS</div>
+                <div className="text-gray-300 text-sm font-bold tracking-widest">INVESTIMENTOS</div>
               </div>
             </div>
             
-            {/* Título compacto e impactante */}
-            <div className="mb-6">
-              <h1 className="text-xl font-black mb-2 bg-gradient-to-r from-[#ff6600] via-[#ffd700] to-[#00e0ff] bg-clip-text text-transparent animate-pulse">
+            {/* Título mais impactante */}
+            <div className="mb-8">
+              <h1 className="text-3xl font-black mb-3 bg-gradient-to-r from-[#ff6600] via-[#ffd700] to-[#00e0ff] bg-clip-text text-transparent animate-pulse">
                 DESPERTE SUA
               </h1>
-              <h1 className="text-2xl font-black mb-3 bg-gradient-to-r from-[#00ff66] via-[#00e0ff] to-[#ffd700] bg-clip-text text-transparent">
+              <h1 className="text-4xl font-black mb-4 bg-gradient-to-r from-[#00ff66] via-[#00e0ff] to-[#ffd700] bg-clip-text text-transparent">
                 LIBERDADE FINANCEIRA
               </h1>
+
             </div>
             
             {/* Dashboard em destaque na frente */}
@@ -699,38 +700,24 @@ export default function NexusQuiz() {
               <FuturisticDashboard />
             </div>
             
-            {/* Aviso importante mais atrativo */}
-            <div className="bg-gradient-to-br from-gray-900 via-black to-gray-800 p-6 rounded-2xl mb-6 border-2 border-[#ff6600]/30 shadow-2xl shadow-[#ff6600]/20 relative overflow-hidden">
+            {/* Aviso importante compacto */}
+            <div className="bg-gradient-to-br from-gray-900 via-black to-gray-800 p-4 rounded-xl mb-6 border border-[#ff6600]/30 shadow-xl shadow-[#ff6600]/10 relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-r from-[#ff6600]/5 via-transparent to-[#ffd700]/5"></div>
-              <div className="absolute top-2 right-2 w-3 h-3 bg-[#ff6600] rounded-full animate-pulse"></div>
+              <div className="absolute top-2 right-2 w-2 h-2 bg-[#ff6600] rounded-full animate-pulse"></div>
               
               <div className="relative z-10">
-                <div className="flex items-center justify-center gap-2 mb-4">
-                  <div className="w-3 h-3 bg-[#ff6600] rounded-full animate-pulse"></div>
-                  <span className="text-[#ff6600] font-black text-lg tracking-wide">AVISO IMPORTANTE</span>
-                  <div className="w-3 h-3 bg-[#ff6600] rounded-full animate-pulse"></div>
+                <div className="flex items-center justify-center gap-2 mb-3">
+                  <div className="w-2 h-2 bg-[#ff6600] rounded-full animate-pulse"></div>
+                  <span className="text-[#ff6600] font-bold text-sm tracking-wide">AVISO IMPORTANTE</span>
+                  <div className="w-2 h-2 bg-[#ff6600] rounded-full animate-pulse"></div>
                 </div>
                 
-                <div className="space-y-3 text-sm">
-                  <div className="flex items-center gap-3 p-3 bg-black/30 rounded-lg">
-                    <div className="w-6 h-6 bg-[#ff6600] rounded-full flex items-center justify-center flex-shrink-0">
+                <div className="text-center">
+                  <div className="flex items-center justify-center gap-2 p-2 bg-black/30 rounded-lg">
+                    <div className="w-4 h-4 bg-[#ff6600] rounded-full flex items-center justify-center flex-shrink-0">
                       <span className="text-white text-xs font-bold">⚠️</span>
                     </div>
-                    <span className="text-gray-300">O Nexus não é gratuito</span>
-                  </div>
-                  
-                  <div className="flex items-center gap-3 p-3 bg-black/30 rounded-lg">
-                    <div className="w-6 h-6 bg-[#ffd700] rounded-full flex items-center justify-center flex-shrink-0">
-                      <DollarSign className="w-3 h-3 text-black" />
-                    </div>
-                    <span className="text-gray-300">Bônus de US$40 liberado após aquisição</span>
-                  </div>
-                  
-                  <div className="flex items-center gap-3 p-3 bg-black/30 rounded-lg">
-                    <div className="w-6 h-6 bg-[#00e0ff] rounded-full flex items-center justify-center flex-shrink-0">
-                      <BarChart3 className="w-3 h-3 text-black" />
-                    </div>
-                    <span className="text-gray-300">15 perguntas = US$40 total garantidos</span>
+                    <span className="text-gray-300 text-sm">O Nexus não é gratuito</span>
                   </div>
                 </div>
               </div>
@@ -989,7 +976,9 @@ export default function NexusQuiz() {
                     </div>
                   </div>
                   
-
+                  <div className="text-2xl font-black animate-pulse">
+                    = MAIS DE R$500 EM VALOR! 🚀
+                  </div>
                 </div>
               </div>
             </div>
