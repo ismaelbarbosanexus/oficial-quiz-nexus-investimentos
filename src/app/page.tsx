@@ -412,7 +412,6 @@ export default function NexusQuiz() {
   const FuturisticDashboard = () => (
     <div className="bg-gradient-to-br from-gray-900 via-black to-gray-800 p-4 rounded-2xl border border-[#00e0ff]/30 shadow-2xl shadow-[#00e0ff]/20 relative overflow-hidden mb-6">
       {/* Efeitos de fundo */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#00e0ff]/5 via-transparent to-[#ff6600]/5"></div>
       <div className="absolute top-2 right-2 flex gap-1">
         <div className="w-2 h-2 bg-[#00ff66] rounded-full animate-pulse"></div>
         <div className="w-2 h-2 bg-[#ff6600] rounded-full animate-ping"></div>
@@ -424,42 +423,20 @@ export default function NexusQuiz() {
           <BarChart3 className="w-6 h-6 text-[#00e0ff] animate-pulse" />
           <div>
             <h3 className="text-lg font-bold text-[#00e0ff]">NEXUS ANALYTICS</h3>
-            <p className="text-gray-400 text-xs">Análise de mercado em tempo real</p>
+            <p className="text-gray-400 text-xs">Análise do QUIZ ao vivo em tempo real</p>
           </div>
         </div>
         
         <div className="grid grid-cols-2 gap-3 mb-4">
-          <div className="bg-black/30 p-3 rounded-xl border border-[#00ff66]/20">
-            <div className="flex items-center gap-2 mb-2">
-              <Users className="w-4 h-4 text-[#00ff66]" />
-              <span className="text-[#00ff66] text-xs font-bold">ATIVOS AGORA</span>
-            </div>
-            <div className="text-lg font-black text-white" suppressHydrationWarning>
-              {mounted ? metrics.usersStarted.toLocaleString() : '2,847'}
-            </div>
-            <div className="text-xs text-gray-400">+{Math.floor(Math.random() * 10) + 5} últimos 5min</div>
-          </div>
-          
-          <div className="bg-black/30 p-3 rounded-xl border border-[#ff6600]/20">
-            <div className="flex items-center gap-2 mb-2">
-              <Trophy className="w-4 h-4 text-[#ff6600]" />
-              <span className="text-[#ff6600] text-xs font-bold">FINALIZARAM</span>
-            </div>
-            <div className="text-lg font-black text-white" suppressHydrationWarning>
-              {mounted ? metrics.usersCompleted.toLocaleString() : '2,018'}
-            </div>
-            <div className="text-xs text-gray-400">Taxa: 82.8%</div>
-          </div>
-          
           <div className="bg-black/30 p-3 rounded-xl border border-[#00e0ff]/20">
             <div className="flex items-center gap-2 mb-2">
               <Target className="w-4 h-4 text-[#00e0ff]" />
               <span className="text-[#00e0ff] text-xs font-bold">COMPRARAM</span>
             </div>
             <div className="text-lg font-black text-white" suppressHydrationWarning>
-              {mounted ? metrics.usersPurchased.toLocaleString() : '612'}
+              {mounted ? (612 + Math.floor(Math.random() * 15)).toLocaleString() : '612'}
             </div>
-            <div className="text-xs text-gray-400">Conversão: 20.1%</div>
+            <div className="text-xs text-gray-400">Conversão: 28.5%</div>
           </div>
           
           <div className="bg-black/30 p-3 rounded-xl border border-[#ffd700]/20">
@@ -468,7 +445,7 @@ export default function NexusQuiz() {
               <span className="text-[#ffd700] text-xs font-bold">BÔNUS PAGOS</span>
             </div>
             <div className="text-lg font-black text-white" suppressHydrationWarning>
-              US${mounted ? metrics.bonusPaid.toLocaleString() : '2,340'}
+              US${mounted ? (2340 + Math.floor(Math.random() * 100)).toLocaleString() : '2,340'}
             </div>
             <div className="text-xs text-gray-400">Hoje</div>
           </div>
@@ -1075,7 +1052,6 @@ export default function NexusQuiz() {
         {/* Pergunta com design mais futurístico */}
         <div className="bg-gradient-to-br from-gray-900 via-black to-gray-800 p-6 rounded-2xl mb-6 border border-gray-700 relative overflow-hidden shadow-2xl">
           {/* Efeitos visuais de trading */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#ff6600]/5 via-transparent to-[#00e0ff]/5"></div>
           <div className="absolute top-2 right-2 flex gap-1">
             <div className="w-2 h-2 bg-[#00ff66] rounded-full animate-pulse"></div>
             <div className="w-2 h-2 bg-[#ff6600] rounded-full animate-ping"></div>
