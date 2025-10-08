@@ -369,7 +369,7 @@ export default function NexusQuiz() {
             </div>
           </div>
           
-          <div className="flex items-center gap-3 mb-3">
+          <div className="flex items-center justify-between mb-3">
             <div className="flex flex-col">
               <div className="text-3xl font-black text-[#00ff66] tracking-wider drop-shadow-lg">
                 US${totalBonus.toFixed(0)}
@@ -377,11 +377,11 @@ export default function NexusQuiz() {
               <div className="text-lg font-bold text-[#ffd700] tracking-wide" suppressHydrationWarning>
                 R${mounted ? (totalBonus * dollarRate).toFixed(0) : '0'}
               </div>
+            </div>
+            <div className="flex flex-col text-right">
               <div className="text-xs text-gray-400" suppressHydrationWarning>
                 USD/BRL: {mounted ? dollarRate.toFixed(2) : '5.85'}
               </div>
-            </div>
-            <div className="flex flex-col">
               <div className="text-xs text-gray-400">PROGRESSO</div>
               <div className="text-sm font-bold text-[#00e0ff]">{Math.round(progress)}%</div>
             </div>
@@ -410,7 +410,7 @@ export default function NexusQuiz() {
 
   // Dashboard em tempo real mais futurístico
   const FuturisticDashboard = () => (
-    <div className="bg-gradient-to-br from-gray-900 via-black to-gray-800 p-6 rounded-2xl border border-[#00e0ff]/30 shadow-2xl shadow-[#00e0ff]/20 relative overflow-hidden">
+    <div className="bg-gradient-to-br from-gray-900 via-black to-gray-800 p-4 rounded-2xl border border-[#00e0ff]/30 shadow-2xl shadow-[#00e0ff]/20 relative overflow-hidden mb-6">
       {/* Efeitos de fundo */}
       <div className="absolute inset-0 bg-gradient-to-r from-[#00e0ff]/5 via-transparent to-[#ff6600]/5"></div>
       <div className="absolute top-2 right-2 flex gap-1">
@@ -420,74 +420,71 @@ export default function NexusQuiz() {
       </div>
       
       <div className="relative z-10">
-        <div className="flex items-center gap-3 mb-6">
-          <BarChart3 className="w-8 h-8 text-[#00e0ff] animate-pulse" />
+        <div className="flex items-center gap-3 mb-4">
+          <BarChart3 className="w-6 h-6 text-[#00e0ff] animate-pulse" />
           <div>
-            <h3 className="text-xl font-bold text-[#00e0ff]">NEXUS ANALYTICS</h3>
-            <p className="text-gray-400 text-sm">Dados em tempo real • Atualização automática</p>
+            <h3 className="text-lg font-bold text-[#00e0ff]">NEXUS ANALYTICS</h3>
+            <p className="text-gray-400 text-xs">Análise de mercado em tempo real</p>
           </div>
         </div>
         
-        <div className="grid grid-cols-2 gap-4 mb-6">
-          <div className="bg-black/30 p-4 rounded-xl border border-[#00ff66]/20">
+        <div className="grid grid-cols-2 gap-3 mb-4">
+          <div className="bg-black/30 p-3 rounded-xl border border-[#00ff66]/20">
             <div className="flex items-center gap-2 mb-2">
-              <Users className="w-5 h-5 text-[#00ff66]" />
-              <span className="text-[#00ff66] text-sm font-bold">ATIVOS AGORA</span>
+              <Users className="w-4 h-4 text-[#00ff66]" />
+              <span className="text-[#00ff66] text-xs font-bold">ATIVOS AGORA</span>
             </div>
-            <div className="text-xl font-black text-white" suppressHydrationWarning>
+            <div className="text-lg font-black text-white" suppressHydrationWarning>
               {mounted ? metrics.usersStarted.toLocaleString() : '2,847'}
             </div>
             <div className="text-xs text-gray-400">+{Math.floor(Math.random() * 10) + 5} últimos 5min</div>
           </div>
           
-          <div className="bg-black/30 p-4 rounded-xl border border-[#ff6600]/20">
+          <div className="bg-black/30 p-3 rounded-xl border border-[#ff6600]/20">
             <div className="flex items-center gap-2 mb-2">
-              <Trophy className="w-5 h-5 text-[#ff6600]" />
-              <span className="text-[#ff6600] text-sm font-bold">FINALIZARAM</span>
+              <Trophy className="w-4 h-4 text-[#ff6600]" />
+              <span className="text-[#ff6600] text-xs font-bold">FINALIZARAM</span>
             </div>
-            <div className="text-xl font-black text-white" suppressHydrationWarning>
+            <div className="text-lg font-black text-white" suppressHydrationWarning>
               {mounted ? metrics.usersCompleted.toLocaleString() : '2,018'}
             </div>
             <div className="text-xs text-gray-400">Taxa: 82.8%</div>
           </div>
           
-          <div className="bg-black/30 p-4 rounded-xl border border-[#00e0ff]/20">
+          <div className="bg-black/30 p-3 rounded-xl border border-[#00e0ff]/20">
             <div className="flex items-center gap-2 mb-2">
-              <Target className="w-5 h-5 text-[#00e0ff]" />
-              <span className="text-[#00e0ff] text-sm font-bold">COMPRARAM</span>
+              <Target className="w-4 h-4 text-[#00e0ff]" />
+              <span className="text-[#00e0ff] text-xs font-bold">COMPRARAM</span>
             </div>
-            <div className="text-xl font-black text-white" suppressHydrationWarning>
+            <div className="text-lg font-black text-white" suppressHydrationWarning>
               {mounted ? metrics.usersPurchased.toLocaleString() : '612'}
             </div>
             <div className="text-xs text-gray-400">Conversão: 20.1%</div>
           </div>
           
-          <div className="bg-black/30 p-4 rounded-xl border border-[#ffd700]/20">
+          <div className="bg-black/30 p-3 rounded-xl border border-[#ffd700]/20">
             <div className="flex items-center gap-2 mb-2">
-              <DollarSign className="w-5 h-5 text-[#ffd700]" />
-              <span className="text-[#ffd700] text-sm font-bold">BÔNUS PAGOS</span>
+              <DollarSign className="w-4 h-4 text-[#ffd700]" />
+              <span className="text-[#ffd700] text-xs font-bold">BÔNUS PAGOS</span>
             </div>
-            <div className="text-xl font-black text-white" suppressHydrationWarning>
+            <div className="text-lg font-black text-white" suppressHydrationWarning>
               US${mounted ? metrics.bonusPaid.toLocaleString() : '2,340'}
             </div>
             <div className="text-xs text-gray-400">Hoje</div>
           </div>
         </div>
         
-        {/* Feed de atividade em tempo real */}
-        <div className="bg-black/20 p-4 rounded-xl border border-gray-700/30">
-          <div className="flex items-center gap-2 mb-3">
-            <Activity className="w-5 h-5 text-[#00ff66] animate-pulse" />
-            <span className="text-[#00ff66] text-sm font-bold">ATIVIDADE AO VIVO</span>
+        {/* Botão para começar quiz na seção de métricas */}
+        <button
+          onClick={() => setCurrentScreen('quiz')}
+          className="w-full bg-gradient-to-r from-[#00ff66] via-[#00e0ff] to-[#00ff66] text-black font-black py-3 px-6 rounded-xl hover:scale-105 transition-all duration-300 shadow-xl shadow-[#00ff66]/30"
+        >
+          <div className="flex items-center justify-center gap-2">
+            <Play className="w-5 h-5 animate-bounce" />
+            <span className="text-sm">COMEÇAR QUIZ AGORA</span>
+            <Rocket className="w-5 h-5 animate-pulse" />
           </div>
-          <div className="space-y-2 max-h-32 overflow-y-auto">
-            {socialProofs.map((proof) => (
-              <div key={proof.id} className="text-xs text-gray-300 animate-pulse">
-                🎉 {proof.name}, {proof.city} - {proof.action} {proof.time}
-              </div>
-            ))}
-          </div>
-        </div>
+        </button>
       </div>
     </div>
   )
@@ -740,7 +737,7 @@ export default function NexusQuiz() {
         <div className="max-w-md mx-auto relative z-10">
           <div className="text-center">
             {/* Logo com efeitos mais impactantes */}
-            <div className="flex items-center justify-center gap-4 mb-8">
+            <div className="flex items-center justify-center gap-4 mb-6">
               <div className="relative">
                 <img 
                   src="https://k6hrqrxuu8obbfwn.public.blob.vercel-storage.com/temp/38455507-41c1-4826-ad7a-80b4cd12cffc.png" 
@@ -755,12 +752,26 @@ export default function NexusQuiz() {
               </div>
             </div>
             
+            {/* Botão principal no topo */}
+            <button
+              onClick={() => setCurrentScreen('quiz')}
+              className="w-full bg-gradient-to-r from-[#00ff66] via-[#00e0ff] to-[#00ff66] text-black font-black py-6 px-8 rounded-2xl hover:scale-105 transition-all duration-300 shadow-2xl shadow-[#00ff66]/40 mb-6 relative overflow-hidden group"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent group-hover:from-white/30 transition-all duration-300"></div>
+              <div className="relative z-10 flex items-center justify-center gap-3">
+                <Play className="w-6 h-6 animate-bounce" />
+                <span className="text-xl">COMEÇAR QUIZ AGORA</span>
+                <Rocket className="w-6 h-6 animate-pulse" />
+              </div>
+              <div className="text-sm mt-1 opacity-90">🎯 Ganhe até US$40 + Descubra seu perfil</div>
+            </button>
+            
             {/* Título mais impactante */}
-            <div className="mb-2">
-              <h1 className="text-2xl font-black mb-1 bg-gradient-to-r from-[#ff6600] via-[#ffd700] to-[#00e0ff] bg-clip-text text-transparent animate-pulse">
+            <div className="mb-1">
+              <h1 className="text-xl font-black mb-1 bg-gradient-to-r from-[#ff6600] via-[#ffd700] to-[#00e0ff] bg-clip-text text-transparent animate-pulse">
                 DESPERTE SUA
               </h1>
-              <h1 className="text-2xl font-black mb-1 bg-gradient-to-r from-[#00ff66] via-[#00e0ff] to-[#ffd700] bg-clip-text text-transparent">
+              <h1 className="text-xl font-black mb-1 bg-gradient-to-r from-[#00ff66] via-[#00e0ff] to-[#ffd700] bg-clip-text text-transparent">
                 LIBERDADE FINANCEIRA
               </h1>
             </div>
@@ -821,20 +832,6 @@ export default function NexusQuiz() {
                 </div>
               </div>
             </div>
-            
-            {/* Botão principal mais chamativo */}
-            <button
-              onClick={() => setCurrentScreen('quiz')}
-              className="w-full bg-gradient-to-r from-[#00ff66] via-[#00e0ff] to-[#00ff66] text-black font-black py-6 px-8 rounded-2xl hover:scale-105 transition-all duration-300 shadow-2xl shadow-[#00ff66]/40 mb-4 relative overflow-hidden group"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent group-hover:from-white/30 transition-all duration-300"></div>
-              <div className="relative z-10 flex items-center justify-center gap-3">
-                <Play className="w-6 h-6 animate-bounce" />
-                <span className="text-xl">COMEÇAR QUIZ AGORA</span>
-                <Rocket className="w-6 h-6 animate-pulse" />
-              </div>
-              <div className="text-sm mt-1 opacity-90">🎯 Ganhe até US$40 + Descubra seu perfil</div>
-            </button>
             
             {/* Botão dashboard mais sutil */}
             <button
@@ -954,49 +951,6 @@ export default function NexusQuiz() {
                   </div>
                   <div className="text-center text-[#ffd700] font-black mt-3 text-lg animate-bounce">
                     🎯 LIBERDADE FINANCEIRA ATIVADA!
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            {/* Seção de transformação com mais impacto visual */}
-            <div className="bg-gradient-to-r from-gray-900 to-gray-800 p-6 rounded-2xl mb-6 border border-[#00ff66]/30 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-r from-[#00ff66]/10 to-[#00e0ff]/10"></div>
-              <div className="relative z-10">
-                <h3 className="text-xl font-bold text-[#ff6600] mb-4 flex items-center justify-center gap-2">
-                  <Zap className="w-6 h-6 animate-pulse" />
-                  TRANSFORME EM LUCRO REAL AGORA
-                </h3>
-                
-                <div className="space-y-3 text-sm">
-                  <div className="flex items-center gap-3 p-3 bg-black/30 rounded-lg">
-                    <div className="w-8 h-8 bg-[#00ff66] rounded-full flex items-center justify-center">
-                      <Zap className="w-4 h-4 text-black" />
-                    </div>
-                    <div>
-                      <div className="text-[#00ff66] font-bold">PIX INSTANTÂNEO</div>
-                      <div className="text-gray-300">Bônus liberado em segundos</div>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center gap-3 p-3 bg-black/30 rounded-lg">
-                    <div className="w-8 h-8 bg-[#00e0ff] rounded-full flex items-center justify-center">
-                      <Award className="w-4 h-4 text-black" />
-                    </div>
-                    <div>
-                      <div className="text-[#00e0ff] font-bold">20 IAs NEXUS</div>
-                      <div className="text-gray-300">Operando 24/7 para você</div>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center gap-3 p-3 bg-black/30 rounded-lg">
-                    <div className="w-8 h-8 bg-[#ffd700] rounded-full flex items-center justify-center">
-                      <LineChart className="w-4 h-4 text-black" />
-                    </div>
-                    <div>
-                      <div className="text-[#ffd700] font-bold">CONTA REAL DERIV</div>
-                      <div className="text-gray-300">Seus US$40 já creditados</div>
-                    </div>
                   </div>
                 </div>
               </div>
